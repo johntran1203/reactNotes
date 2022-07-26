@@ -11,14 +11,7 @@ body {
   padding: 0;
 }
 
-.addTask {
-  height: 30vh;
-  background-color: dodgerblue;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .list {
   height: auto;
