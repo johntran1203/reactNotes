@@ -1,23 +1,38 @@
 import logo from './logo.svg';
+import { useState, useRef } from 'react';
 import './App.css';
+import Login from './components/Login';
+import Name from './components/Name';
+import Count from './components/Count';
+import Planet from './components/Planet';
+import Todo from './components/Todo';
 
 function App() {
+  const [showHeader, setShowHeader] = useState(false)
+  const [showText, setShowText] = useState(true)
+  const input = useRef(null)
+  const planets = [{name: 'MArs', isGasPlanet: false},
+  {name: 'MArs', isGasPlanet: false},
+  {name: 'Earth', isGasPlanet: false},
+  {name: 'Jupiter', isGasPlanet: true},
+  {name: 'Venus', isGasPlanet: false},
+  {name: 'Neptune', isGasPlanet: true},
+  {name: 'Uranus', isGasPlanet: true}]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={()=>setShowHeader(true)}>show header</button>
+      {showHeader ? <h2>Hello</h2> : <h2>Nope not today</h2>}
+      <Login />
+      <Name />
+      <Count />
+      {planets.map((planet, key)=> {
+        return  <Planet planet={planet}  key={key} />
+      })}
+      
+      {showText && <h1>HI MY NAME IS CORNDOG</h1>}
+      <button onClick={()=>{setShowText(!showText)}}>Show/Hide</button>
+      <Todo />
     </div>
   );
 }
