@@ -6,6 +6,7 @@ import Name from './components/Name';
 import Count from './components/Count';
 import Planet from './components/Planet';
 import Todo from './components/Todo';
+import Cat from './components/Cat';
 
 function App() {
   const [showHeader, setShowHeader] = useState(false)
@@ -33,6 +34,7 @@ function App() {
       {showText && <h1>HI MY NAME IS CORNDOG</h1>}
       <button onClick={()=>{setShowText(!showText)}}>Show/Hide</button>
       <Todo />
+      <Cat />
     </div>
   );
 }
