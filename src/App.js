@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import { useState, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Name from './components/Name';
@@ -7,8 +8,12 @@ import Count from './components/Count';
 import Planet from './components/Planet';
 import Todo from './components/Todo';
 import Cat from './components/Cat';
+import Navbar from './components/Navbar';
+import Contact from './components/contact';
+import Home from './components/Home';
 
 function App() {
+  const [userName, setUserName] = useState("john")
   const [showHeader, setShowHeader] = useState(false)
   const [showText, setShowText] = useState(true)
   const input = useRef(null)
@@ -22,6 +27,13 @@ function App() {
 
   return (
     <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home  userName={userName} />} />
+          <Route path='/contact' element={<Contact userName={userName}  />} />
+        </Routes>
+      </Router>
       <button onClick={()=>setShowHeader(true)}>show header</button>
       {showHeader ? <h2>Hello</h2> : <h2>Nope not today</h2>}
       <Login />
