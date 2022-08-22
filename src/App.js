@@ -11,8 +11,16 @@ import Cat from './components/Cat';
 import Navbar from './components/Navbar';
 import Contact from './components/contact';
 import Home from './components/Home';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: true,
+      },
+    },
+  });
   const [userName, setUserName] = useState("john")
   const [showHeader, setShowHeader] = useState(false)
   const [showText, setShowText] = useState(true)
@@ -27,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <QueryClientProvider client={client}>
       <Router>
         <Navbar />
         <Routes>
@@ -47,6 +56,7 @@ function App() {
       <button onClick={()=>{setShowText(!showText)}}>Show/Hide</button>
       <Todo />
       <Cat />
+      </QueryClientProvider>
     </div>
   );
 }
